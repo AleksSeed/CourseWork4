@@ -40,8 +40,8 @@ class AccountControllerTest {
     private TestData testdata;
     @Container
     private static final PostgreSQLContainer<?> postgres = new PostgreSQLContainer<>("postgres:13")
-            .withUsername("banking")
-            .withPassword("super-safe-pass");
+            .withUsername(Base64.getEncoder().encodeToString("banking".getBytes()))
+            .withPassword(Base64.getEncoder().encodeToString("super-safe-pass".getBytes()));
 
     @DynamicPropertySource
     static void postgresProperties(DynamicPropertyRegistry registry) {
